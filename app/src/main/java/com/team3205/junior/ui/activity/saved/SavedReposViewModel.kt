@@ -1,6 +1,6 @@
 package com.team3205.junior.ui.activity.saved
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,9 +27,11 @@ class SavedReposViewModel @Inject constructor(
 ): ViewModel() {
     private val _savedRepos: MutableLiveData<List<Repository>> = MutableLiveData()
     private val _loading: MutableLiveData<Boolean> = MutableLiveData()
+    private val _currentErrorStackTrace: MutableLiveData<String> = MutableLiveData()
 
-    val savedRepo = _savedRepos
-    val loading = _loading
+    val savedRepo: LiveData<List<Repository>> = _savedRepos
+    val loading: LiveData<Boolean> = _loading
+    val currentErrorStackTrace: LiveData<String> = _currentErrorStackTrace
 
     init {
         loadSavedRepositories()
@@ -44,7 +46,7 @@ class SavedReposViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     when (state) {
                         is State.Complete -> _loading.value = false
-                        is State.Error -> Log.e("error", state.exc.stackTraceToString())
+                        is State.Error -> _currentErrorStackTrace.value = state.exc.stackTraceToString()
                         is State.Loading -> _loading.value = true
                         is State.Success -> _savedRepos.value = state.data
                     }

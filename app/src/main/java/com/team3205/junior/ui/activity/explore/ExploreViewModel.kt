@@ -1,6 +1,5 @@
 package com.team3205.junior.ui.activity.explore
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,6 +23,8 @@ import javax.inject.Inject
  * @property recentSearches - публичные живые данные, содержащие данные о истории поиска
  * @property _repos - мутабельные живые данные, содержащие данные о репозиториях
  * @property repos - публичные живые данные, содержащие данные о репозиториях
+ * @property _currentErrorStackTrace - мутабельные живые данные, содержащие данные об ошибке
+ * @property currentErrorStackTrace - публичные живые данные, содержащие данные об ошибке
  */
 @HiltViewModel
 class ExploreViewModel @Inject constructor(
@@ -38,10 +39,12 @@ class ExploreViewModel @Inject constructor(
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
     private val _repos: MutableLiveData<List<Repository>> = MutableLiveData()
     private val _recentSearches: MutableLiveData<List<RecentSearch>> = MutableLiveData()
+    private val _currentErrorStackTrace: MutableLiveData<String> = MutableLiveData()
 
     val isLoading: LiveData<Boolean> = _isLoading
     val repos: LiveData<List<Repository>> = _repos
     val recentSearches = _recentSearches
+    val currentErrorStackTrace: LiveData<String> = _currentErrorStackTrace
 
     init {
         loadRecentSearches()
@@ -57,7 +60,7 @@ class ExploreViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     when (state) {
                         is State.Loading -> _isLoading.value = true
-                        is State.Error -> Log.e("error", state.exc.stackTraceToString())
+                        is State.Error -> _currentErrorStackTrace.value = state.exc.stackTraceToString()
                         is State.Complete -> _isLoading.value = false
                         is State.Success -> _repos.value = state.data
                     }
@@ -95,7 +98,7 @@ class ExploreViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     when (state) {
                         is State.Loading -> _isLoading.value = true
-                        is State.Error -> Log.e("error", state.exc.stackTraceToString())
+                        is State.Error -> _currentErrorStackTrace.value = state.exc.stackTraceToString()
                         is State.Complete -> _isLoading.value = false
                         is State.Success -> _recentSearches.value = state.data
                     }

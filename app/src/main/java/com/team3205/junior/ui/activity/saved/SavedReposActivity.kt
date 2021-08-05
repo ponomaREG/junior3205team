@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -114,6 +115,9 @@ class SavedReposActivity : AppCompatActivity() {
         viewModel.loading.observe(this){
             binding.savedLoadingIndicator.visibility = if(it) View.VISIBLE else View.INVISIBLE
         }
+        viewModel.currentErrorStackTrace.observe(this){ stackTrace ->
+            showToast(stackTrace)
+        }
     }
 
     /**
@@ -123,5 +127,12 @@ class SavedReposActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(repository.url)
         startActivity(intent)
+    }
+
+    /**
+     * Отображение Toast-сообщения
+     */
+    private fun showToast(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

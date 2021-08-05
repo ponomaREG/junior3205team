@@ -239,6 +239,9 @@ class ExploreActivity : AppCompatActivity() {
             recentSearches.observe(this@ExploreActivity){ recentSearches ->
                 recentSearchesAdapter.addItems(recentSearches)
             }
+            currentErrorStackTrace.observe(this@ExploreActivity){ stackTrace ->
+                showToast(stackTrace)
+            }
         }
     }
 
@@ -361,5 +364,12 @@ class ExploreActivity : AppCompatActivity() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
         return permission == PackageManager.PERMISSION_GRANTED
+    }
+
+    /**
+     * Отображение Toast-сообщения
+     */
+    private fun showToast(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
