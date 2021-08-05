@@ -4,6 +4,10 @@ import com.team3205.junior.data.db.entities.RepositoryDB
 import com.team3205.junior.data.repository.entities.Repository
 import com.team3205.junior.data.repository.entities.User
 
+
+/**
+ * Mapper для преобразования объекта сущности репозитория в объект репозитория слоя базы данных
+ */
 class RepositoryDBMapper {
     fun fromRepository(repository: Repository): RepositoryDB {
         return RepositoryDB(

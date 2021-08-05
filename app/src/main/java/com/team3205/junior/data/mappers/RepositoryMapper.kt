@@ -5,6 +5,9 @@ import com.team3205.junior.data.network.entities.RepositoryResponse
 import com.team3205.junior.data.repository.entities.Repository
 import com.team3205.junior.data.repository.entities.User
 
+/**
+ * Mapper для преобразования объекта сущности базы данных репозитория и сущности сети в объект слоя репозитория
+ */
 class RepositoryMapper {
     fun fromRepositoryDB(repositoryDB: RepositoryDB, owner: User): Repository{
         return Repository(
