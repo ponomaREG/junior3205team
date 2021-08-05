@@ -9,6 +9,12 @@ import com.team3205.junior.data.db.entities.RecentSearchDB
 import com.team3205.junior.data.db.entities.RepositoryDB
 import com.team3205.junior.data.db.entities.UserDB
 
+/**
+ *  Класс базы данных
+ *  @property getRecentSearchDAO - получение DAO ранних запросов
+ *  @property getUserDAO - получение DAO пользователя
+ *  @property getRepositoryDAO - получение DAO репозитория
+ */
 @Database(
     entities = [RepositoryDB::class, UserDB::class, RecentSearchDB::class],
     version = 1
