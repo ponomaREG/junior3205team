@@ -4,6 +4,9 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Декоратор для элементов recyclerView для отступов
+ */
 class OffsetItemDecorator(
     val left: Int,
     val right: Int,
