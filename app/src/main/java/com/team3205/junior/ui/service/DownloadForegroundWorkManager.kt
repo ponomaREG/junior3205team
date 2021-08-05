@@ -18,9 +18,12 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.TimeUnit
 
+/**
+ * Сервис для скачивания репозитория в background
+ */
 class DownloadForegroundWorkManager constructor(
-    val context: Context,
-    workerParams: WorkerParameters
+        private val context: Context,
+        workerParams: WorkerParameters
 ) : Worker(context, workerParams) {
 
     private val notifyManager = context.getSystemService(NotificationManager::class.java)
@@ -56,6 +59,9 @@ class DownloadForegroundWorkManager constructor(
         return Result.success()
     }
 
+    /**
+     * Создание канала уведомлений
+     */
     private fun createNotificationChannelIfNeed() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             var notificationChannel = notifyManager?.getNotificationChannel(CHANNEL_ID)
@@ -68,6 +74,9 @@ class DownloadForegroundWorkManager constructor(
         }
     }
 
+    /**
+     * Скачивание репозитория
+     */
     private fun downloadFile(url: String, name: String, notificationId: Int){
         val urlObj = URL(url)
         val connection: HttpURLConnection = urlObj.openConnection() as HttpURLConnection
@@ -98,6 +107,9 @@ class DownloadForegroundWorkManager constructor(
         input.close()
     }
 
+    /**
+     * Получения пути для сохранения файла
+     */
     private fun getPathForSave(name: String): String{
         return if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             File(
@@ -116,6 +128,9 @@ class DownloadForegroundWorkManager constructor(
         }
     }
 
+    /**
+     * Отображение прогресса скачивания
+     */
     private fun showProgress(progress: Int,
                              name: String,
                              indeterminate: Boolean,
@@ -131,6 +146,9 @@ class DownloadForegroundWorkManager constructor(
         notifyManager?.notify(notificationID, notification)
     }
 
+    /**
+     * Показ финального уведомления о скачивании
+     */
     private fun showSuccessNotification(name: String){
         val finNotify = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
