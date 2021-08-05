@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Junior3205</string>
+    <string name="search_hint">3205team</string>
+    <string name="search_recent_searches_title">Вы недавно искали</string>
+    <string name="search_recent_searches_button_clear">Очистить</string>
+    <string name="search_error_empty_input">Пустая строка</string>
+    <string name="search_toolbar_menu_ic_saved_repos">Сохраненные репозитории</string>
+    <string name="search_toolbar_title">Поиск</string>
+    <string name="saved_toolbar_title">Сохраненные</string>
+</resources>

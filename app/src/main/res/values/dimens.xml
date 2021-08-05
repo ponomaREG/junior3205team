@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_repository_avatar_card_radiusCorner">10dp</dimen>
+    <dimen name="item_repository_avatar_card_elevation">0dp</dimen>
+    <dimen name="item_repository_owner_avatar_side">16dp</dimen>
+    <dimen name="item_repository_ic_star_side">15dp</dimen>
+    <dimen name="item_repository_ic_language_side">15dp</dimen>
+    <dimen name="item_repository_button_download_side">44dp</dimen>
+    <dimen name="item_repository_progress_download_side">24dp</dimen>
+    <dimen name="item_repository_ic_saved_side">24dp</dimen>
+
+    <dimen name="search_guideline_left">20dp</dimen>
+    <dimen name="search_guideline_right">20dp</dimen>
+    <dimen name="search_button_commit_side">24dp</dimen>
+    <dimen name="search_progress_side">30dp</dimen>
+    <dimen name="search_button_cancel_side">18dp</dimen>
+    <dimen name="item_recent_search_ic_arrow_side">24dp</dimen>
+</resources>

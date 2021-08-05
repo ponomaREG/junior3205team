@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_repository_name_textSize">17sp</dimen>
+    <dimen name="item_repository_owner_username_textSize">15sp</dimen>
+    <dimen name="item_repository_description_textSize">16sp</dimen>
+    <dimen name="item_repository_stargazers_textSize">16sp</dimen>
+    <dimen name="item_repository_language_textSize">16sp</dimen>
+
+    <dimen name="search_input_textSize">17sp</dimen>
+    <dimen name="search_recent_searches_title_textSize">18sp</dimen>
+    <dimen name="search_recent_searches_button_clear_textSize">15sp</dimen>
+
+    <dimen name="item_recent_search_text_textSize">17sp</dimen>
+</resources>

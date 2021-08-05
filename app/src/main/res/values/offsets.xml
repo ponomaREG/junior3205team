@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_repository_offset_left">20dp</dimen>
+    <dimen name="item_repository_offset_right">20dp</dimen>
+    <dimen name="item_repository_offset_top">10dp</dimen>
+    <dimen name="item_repository_offset_bottom">10dp</dimen>
+    <dimen name="item_repository_owner_username_margin_start">10dp</dimen>
+    <dimen name="item_repository_ic_star_margin_top">10dp</dimen>
+    <dimen name="item_repository_stargazers_margin_start">5dp</dimen>
+    <dimen name="item_repository_ic_language_margin_top">10dp</dimen>
+    <dimen name="item_repository_ic_language_margin_start">20dp</dimen>
+    <dimen name="item_repository_language_margin_start">5dp</dimen>
+    <dimen name="item_repository_button_download_padding_top">10dp</dimen>
+    <dimen name="item_repository_button_download_padding_bottom">10dp</dimen>
+    <dimen name="item_repository_button_download_padding_start">20dp</dimen>
+
+    <dimen name="item_recent_search_offset_left">0dp</dimen>
+    <dimen name="item_recent_search_offset_right">0dp</dimen>
+    <dimen name="item_recent_search_offset_top">5dp</dimen>
+    <dimen name="item_recent_search_offset_bottom">5dp</dimen>
+
+    <dimen name="search_toolBar_title_margin_start">20dp</dimen>
+    <dimen name="search_button_cancel_margin_end">20dp</dimen>
+    <dimen name="search_recent_searches_title_margin_top">15dp</dimen>
+    <dimen name="search_recent_searches_button_clear_margin_top">15dp</dimen>
+    <dimen name="search_recent_searches_margin_top">15dp</dimen>
+
+</resources>
