@@ -13,14 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Junior3205">
-        <activity android:name=".ui.activity.saved.SavedReposActivity"></activity>
-        <activity android:name=".ui.activity.explore.ExploreActivity">
+        <activity android:name=".ui.activity.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Junior3205.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.saved.SavedReposActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.explore.ExploreActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

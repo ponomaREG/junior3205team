@@ -23,4 +23,5 @@
     <color name="search_button_commit_tint">#000000</color>
     <color name="search_button_cancel_tint">#000000</color>
     <color name="menu_search_ic_saved_repos_tint">#000000</color>
+    <color name="splash_screen_solid">#FFFFFF</color>
 </resources>
