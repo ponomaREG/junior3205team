@@ -6,8 +6,17 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-
+/**
+ * Сервис, предоставляющий доступ к API гитхаба
+ */
 interface RepositoryService {
+
+    /**
+     * Получение репозиториев пользователя
+     * @param username - имя пользователя
+     * @return - лист репозиториев
+     * @see RepositoryResponse
+     */
     @GET("/users/{username}/repos")
     suspend fun getRepositoriesByUserName(@Path("username") username: String): List<RepositoryResponse>
 }
