@@ -13,7 +13,4 @@ class UserMapper {
         return User(userDB.id, userDB.login, userDB.avatar_url)
     }
 
-    fun fromUserResponse(userResponse: UserResponse): User{
-        return User(userResponse.id, userResponse.login, userResponse.avatar_url)
-    }
 }

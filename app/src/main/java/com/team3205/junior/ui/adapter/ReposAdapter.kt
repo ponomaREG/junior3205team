@@ -1,4 +1,4 @@
-package com.team3205.junior.ui.adapter;
+package com.team3205.junior.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -131,9 +131,5 @@ class ReposAdapter constructor(
     }
 
     override fun getItemCount(): Int = _items.size
-
-    private fun downloadRepos(repository: Repository){
-
-    }
 
 }

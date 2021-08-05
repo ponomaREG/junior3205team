@@ -1,7 +1,6 @@
 package com.team3205.junior.domain.usecase
 
 import com.team3205.junior.data.repository.MainRepository
-import com.team3205.junior.data.repository.entities.Repository
 import com.team3205.junior.domain.State
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

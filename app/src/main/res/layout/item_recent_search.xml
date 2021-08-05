@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -27,6 +27,6 @@
         app:tint="@color/item_recent_search_ic_arrow_tint"
         app:srcCompat="@drawable/ic_arrow"
         android:rotation="225"
-        />
+        android:contentDescription="@string/item_recent_search_ic_arrow_cd" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

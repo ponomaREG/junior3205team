@@ -65,8 +65,8 @@ class SavedReposActivity : AppCompatActivity() {
     private fun initActionBar(){
         setSupportActionBar(binding.savedToolBar)
         supportActionBar?.setTitle(R.string.saved_toolbar_title)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setDisplayShowHomeEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     /**

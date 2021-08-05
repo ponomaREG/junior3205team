@@ -7,4 +7,13 @@
     <string name="search_toolbar_menu_ic_saved_repos">Сохраненные репозитории</string>
     <string name="search_toolbar_title">Поиск</string>
     <string name="saved_toolbar_title">Сохраненные</string>
+    <!--> Content descriptions </-->
+    <string name="search_button_cancel_cd">Button cancel</string>
+    <string name="search_button_commit_cd">Button commit</string>
+    <string name="item_recent_search_ic_arrow_cd">Icon arrow</string>
+    <string name="item_repository_owner_avatar_cd">Owner avatar</string>
+    <string name="item_repository_ic_star_cd">Icon star</string>
+    <string name="item_repository_ic_language_cd">Icon language</string>
+    <string name="item_repository_button_download_cd">Button download</string>
+    <string name="item_repository_ic_saved_cd">Icon saved</string>
 </resources>

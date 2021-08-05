@@ -1,4 +1,4 @@
-package com.team3205.junior.ui.adapter;
+package com.team3205.junior.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

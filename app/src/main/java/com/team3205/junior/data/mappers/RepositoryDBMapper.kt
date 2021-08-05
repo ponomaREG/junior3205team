@@ -2,7 +2,6 @@ package com.team3205.junior.data.mappers
 
 import com.team3205.junior.data.db.entities.RepositoryDB
 import com.team3205.junior.data.repository.entities.Repository
-import com.team3205.junior.data.repository.entities.User
 
 
 /**

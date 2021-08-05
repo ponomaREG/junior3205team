@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
@@ -18,7 +18,7 @@
             android:layout_width="@dimen/item_repository_owner_avatar_side"
             android:layout_height="@dimen/item_repository_owner_avatar_side"
             tools:src="@tools:sample/avatars"
-            />
+            android:contentDescription="@string/item_repository_owner_avatar_cd" />
     </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/item_repository_owner_username"
@@ -68,7 +68,7 @@
         android:layout_marginTop="@dimen/item_repository_ic_star_margin_top"
         app:tint="@color/item_repository_ic_star_tint"
         app:srcCompat="@drawable/ic_star"
-        />
+        android:contentDescription="@string/item_repository_ic_star_cd" />
     <TextView
         android:id="@+id/item_repository_stargazers"
         android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
         android:layout_marginTop="@dimen/item_repository_ic_language_margin_top"
         android:layout_marginStart="@dimen/item_repository_ic_language_margin_start"
         app:srcCompat="@drawable/ic_programming_language"
-        />
+        android:contentDescription="@string/item_repository_ic_language_cd" />
     <TextView
         android:id="@+id/item_repository_language"
         android:layout_width="wrap_content"
@@ -115,7 +115,8 @@
         android:paddingStart="@dimen/item_repository_button_download_padding_start"
         app:tint="@color/item_repository_button_download_tint"
         app:srcCompat="@drawable/ic_download"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry"
+        android:contentDescription="@string/item_repository_button_download_cd" />
     <ProgressBar
         android:id="@+id/item_repository_progress_download"
         android:layout_width="@dimen/item_repository_progress_download_side"
@@ -137,6 +138,6 @@
         app:tint="@color/item_repository_ic_saved_tint"
         android:visibility="invisible"
         app:srcCompat="@drawable/ic_saved"
-        />
+        android:contentDescription="@string/item_repository_ic_saved_cd" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
