@@ -16,14 +16,24 @@ import com.team3205.junior.ui.adapter.ReposAdapter
 import com.team3205.junior.ui.decorators.OffsetItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ *  Активи с сохраненными репозиториями
+ *  @property viewModel - вьюМодель
+ *  @property binding - биндинг
+ *  @property reposAdapter - адаптер с репозиториями
+ */
 @AndroidEntryPoint
 class SavedReposActivity : AppCompatActivity() {
     private val viewModel: SavedReposViewModel by viewModels()
     private lateinit var binding: ActivitySavedReposBinding
     private lateinit var reposAdapter: ReposAdapter
+
+    /**
+     * Создание активити
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_saved_repos)
+        initBinding()
         initActionBar()
         initAdapters()
         attachAdaptersToRecyclerView()
@@ -31,6 +41,9 @@ class SavedReposActivity : AppCompatActivity() {
         attachListenersToLiveDataInViewModel()
     }
 
+    /**
+     * Колбек при выборе элемента меню
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == android.R.id.home){
             finish()
@@ -38,6 +51,16 @@ class SavedReposActivity : AppCompatActivity() {
         return true
     }
 
+    /**
+     * Иницилизация биндинга
+     */
+    private fun initBinding(){
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_saved_repos)
+    }
+
+    /**
+     * Иницилизация actionBar
+     */
     private fun initActionBar(){
         setSupportActionBar(binding.savedToolBar)
         supportActionBar?.setTitle(R.string.saved_toolbar_title)
@@ -45,16 +68,25 @@ class SavedReposActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true);
     }
 
+    /**
+     * Иницилизация адаптеров
+     */
     private fun initAdapters(){
         reposAdapter = ReposAdapter(
             onReposClick = this::ueOnRepoClick
         )
     }
 
+    /**
+     * Присваивание адаптеров к recyclerView
+     */
     private fun attachAdaptersToRecyclerView(){
         binding.savedRepositories.adapter = reposAdapter
     }
 
+    /**
+     * Присваивание декораторов
+     */
     private fun attachDecorators(){
         with(resources) {
             val decoratorRepos = OffsetItemDecorator(
@@ -72,6 +104,9 @@ class SavedReposActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Присваивание слушателей данных к источникам живых данных во вьюмодели
+     */
     private fun attachListenersToLiveDataInViewModel(){
         viewModel.savedRepo.observe(this){
             reposAdapter.addItems(it)
@@ -81,6 +116,9 @@ class SavedReposActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Пользовательское взаимодействие: нажатие на репозиторий
+     */
     private fun ueOnRepoClick(repository: Repository){
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(repository.url)

@@ -14,6 +14,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Вьюмодель активити сохраненных репозиториев
+ * @property _savedRepos - мутабельные живые данные, содержащие данные об сохраненных репозиториях
+ * @property savedRepo - публичные живые данные, содержащие данные об сохраненных репозиториях
+ * @property _loading - мутабельные живые данные, содержащие данные о загрузке
+ * @property loading - публичные живые данные, содержащие данные о загрузке
+ */
 @HiltViewModel
 class SavedReposViewModel @Inject constructor(
     private val getSavedRepositoriesUseCase: GetSavedRepositoriesUseCase
@@ -28,7 +35,10 @@ class SavedReposViewModel @Inject constructor(
         loadSavedRepositories()
     }
 
-    fun loadSavedRepositories(){
+    /**
+     *  Загрузка сохраненных репозиториев
+     */
+    private fun loadSavedRepositories(){
         viewModelScope.launch(Dispatchers.IO) {
             getSavedRepositoriesUseCase().collect { state ->
                 withContext(Dispatchers.Main) {
