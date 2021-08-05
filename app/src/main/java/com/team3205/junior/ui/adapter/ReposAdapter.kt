@@ -1,6 +1,5 @@
 package com.team3205.junior.ui.adapter;
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,12 @@ import com.team3205.junior.R
 import com.team3205.junior.data.repository.entities.Repository
 import com.team3205.junior.databinding.ItemRepositoryBinding
 import com.team3205.junior.ui.util.loadImage
-import java.util.*
 
+/**
+ * Адаптер для репозиториев
+ * @param onReposButtonDownloadClick - колбек нажатия на кнопку скачивания репозитория
+ * @param onReposClick - колбек нажатия на репозиторий
+ */
 class ReposAdapter constructor(
     private val onReposClick:(Repository)-> Unit = {},
     private val onReposButtonDownloadClick:(Repository, Int) -> Unit = {_, _ -> }
@@ -24,18 +27,26 @@ class ReposAdapter constructor(
         const val PAYLOAD_FAILED_DOWNLOADING = "PAYLOAD_FAILED_DOWNLOADING"
     }
 
-
+    /**
+     * Добавление элементов
+     */
     fun addItems(items: List<Repository>) {
         val positionStart = _items.size
         _items.addAll(items)
         notifyItemRangeInserted(positionStart, items.size)
     }
 
+    /**
+     * Очистка элементов
+     */
     fun clear(){
         _items.clear()
         notifyDataSetChanged()
     }
 
+    /**
+     * Установка статуса репозитория
+     */
     fun setStatusOfRepo(position: Int, payload: Any){
         notifyItemChanged(position,payload)
     }
