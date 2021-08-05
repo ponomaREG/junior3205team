@@ -16,6 +16,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Вьюмодель для активити поиска репозиториев
+ * @property _isLoading - мутабельные живые данные, содержащие данные о загрузке
+ * @property isLoading - публичные живые данные, содержащие данные о загрузке
+ * @property _recentSearches - мутабельные живые данные, содержащие данные о истории поиска
+ * @property recentSearches - публичные живые данные, содержащие данные о истории поиска
+ * @property _repos - мутабельные живые данные, содержащие данные о репозиториях
+ * @property repos - публичные живые данные, содержащие данные о репозиториях
+ */
 @HiltViewModel
 class ExploreViewModel @Inject constructor(
         private val getRepoUseCase: GetRepositoriesByUsernameUseCase,
@@ -38,6 +47,10 @@ class ExploreViewModel @Inject constructor(
         loadRecentSearches()
     }
 
+    /**
+     *  Загрузка репозиториев по поиску
+     *  @param userName - запрос
+     */
     fun loadRepos(userName: String){
         viewModelScope.launch(Dispatchers.IO) {
             getRepoUseCase(userName).collect { state ->
@@ -54,6 +67,9 @@ class ExploreViewModel @Inject constructor(
         saveSearch(userName)
     }
 
+    /**
+     * Сохранение репозитория в базу данных
+     */
     fun saveRepoToDb(repository: Repository){
         viewModelScope.launch(Dispatchers.IO) {
             saveUserUseCase(repository.owner)
@@ -61,13 +77,18 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Операция очистки истории запросов
+     */
     fun clearRecentSearches(){
         viewModelScope.launch(Dispatchers.IO) {
             clearRecentSearchesUseCase()
         }
     }
 
-
+    /**
+     * Загрузка истории запросов
+     */
     private fun loadRecentSearches(){
         viewModelScope.launch(Dispatchers.IO) {
             getRecentSearchesUseCase().collect { state ->
@@ -83,6 +104,9 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Сохранение поиска
+     */
     private fun saveSearch(username: String){
         viewModelScope.launch(Dispatchers.IO){
             saveSearchUseCase.invoke(username)

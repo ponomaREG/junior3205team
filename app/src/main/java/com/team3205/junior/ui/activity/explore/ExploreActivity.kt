@@ -30,7 +30,13 @@ import com.team3205.junior.ui.decorators.OffsetItemDecorator
 import com.team3205.junior.ui.service.DownloadForegroundWorkManager
 import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ *  Активи поиска репозиториев
+ *  @property viewModel - вьюмодель
+ *  @property recentSearchesAdapter - адаптер найденных репозиториев
+ *  @property binding - биндинг
+ *  @property PERMISSIONS_STORAGE - разрешения для записи в папку Downloads
+ */
 @AndroidEntryPoint
 class ExploreActivity : AppCompatActivity() {
     private val viewModel: ExploreViewModel by viewModels()
@@ -42,24 +48,33 @@ class ExploreActivity : AppCompatActivity() {
         Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
+    /**
+     * Создание активити
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewBinding()
-        initActionBar()
+        setupActionBar()
         initAdapters()
         attachAdapters()
-        initDecorations()
+        attachDecorations()
         initListeners()
         attachTextWatcherToInputField()
         attachListenersToLiveDataInViewModel()
         showRecentSearchedGroup()
     }
 
+    /**
+     *  Создание опций меню
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_toolbar_menu, menu)
         return true
     }
 
+    /**
+     * Колбек при выборе элемента меню
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.menu_search_ic_saved_repos){
             val intent = Intent(this, SavedReposActivity::class.java)
@@ -68,15 +83,24 @@ class ExploreActivity : AppCompatActivity() {
         return true
     }
 
+    /**
+     * Иниилизация биндинга
+     */
     private fun initViewBinding(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search)
     }
 
-    private fun initActionBar(){
+    /**
+     * Установка actionBar
+     */
+    private fun setupActionBar(){
         setSupportActionBar(binding.searchToolBar)
         supportActionBar?.setTitle(R.string.search_toolbar_title)
     }
 
+    /**
+     * Иницилизация адаптеров
+     */
     private fun initAdapters(){
         reposAdapter = ReposAdapter(
             onReposClick = this::ueOnReposClick,
@@ -87,6 +111,9 @@ class ExploreActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Присваивание адаптеров к recyclerView
+     */
     private fun attachAdapters(){
         binding.apply {
             searchRepos.adapter = reposAdapter
@@ -94,7 +121,10 @@ class ExploreActivity : AppCompatActivity() {
         }
     }
 
-    private fun initDecorations(){
+    /**
+     * Присваивание декораторов recyclerView
+     */
+    private fun attachDecorations(){
         with(resources) {
             val decoratorRepos = OffsetItemDecorator(
                 left = getDimensionPixelSize(R.dimen.item_repository_offset_left),
@@ -123,6 +153,9 @@ class ExploreActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Иницилизация слушателей
+     */
     private fun initListeners(){
         binding.apply {
             searchButtonCancel.setOnClickListener {
@@ -153,6 +186,9 @@ class ExploreActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Присваивание слушателя текста к полю поиска
+     */
     private fun attachTextWatcherToInputField(){
         binding.searchInput.addTextChangedListener(object : TextWatcher {
 
@@ -188,6 +224,9 @@ class ExploreActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Присваивание слушателей данных к живым данным во вьюмоделе
+     */
     private fun attachListenersToLiveDataInViewModel(){
         viewModel.apply {
             isLoading.observe(this@ExploreActivity){
@@ -203,6 +242,9 @@ class ExploreActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Спрятать клавиаутуру
+     */
     private fun hideKeyboard() {
         val imm: InputMethodManager =
             getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
@@ -213,24 +255,39 @@ class ExploreActivity : AppCompatActivity() {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
+    /**
+     * Спрятать группу вью истории поиска
+     */
     private fun hideRecentSearchedGroup(){
         binding.searchGroupRecentSearches.visibility = View.GONE
     }
 
+    /**
+     * Показать группу вью истории поиска
+     */
     private fun showRecentSearchedGroup(){
         binding.searchGroupRecentSearches.visibility = View.VISIBLE
     }
 
+    /**
+     * Пользовательское взаимодействие: нажатие на историю поиска
+     */
     private fun ueOnRecentSearchClick(recentSearch: RecentSearch){
         binding.searchInput.text = Editable.Factory.getInstance().newEditable(recentSearch.search)
     }
 
+    /**
+     * Пользовательское взаимодействие: нажатие на репозитории
+     */
     private fun ueOnReposClick(repository: Repository){
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(repository.url)
         startActivity(intent)
     }
 
+    /**
+     * Пользовательское взаимодействие: нажатие на кнопку скачивания репозитория
+     */
     private fun ueOnReposDownloadClick(repository: Repository, position: Int){
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
             if(ifExistsPermissions()){
@@ -243,6 +300,9 @@ class ExploreActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Начать скачивание репозитория
+     */
     private fun startDownloadingRepo(repository: Repository, position: Int){
         val data = Data.Builder()
             .putString(DownloadForegroundWorkManager.KEY_NAME, repository.name)
@@ -272,12 +332,18 @@ class ExploreActivity : AppCompatActivity() {
         workManager.enqueue(request)
     }
 
+    /**
+     * Получение ограничений на скачивание
+     */
     private fun getConstraintsForDownloading(): Constraints{
         return Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
     }
 
+    /**
+     * Запрос разрешений на запись данных
+     */
     private fun requestStoragePermissions() {
         ActivityCompat.requestPermissions(
             this,
@@ -286,6 +352,9 @@ class ExploreActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Проверка существования разрешений на запись
+     */
     private fun ifExistsPermissions(): Boolean{
         val permission = ActivityCompat.checkSelfPermission(
             this,
