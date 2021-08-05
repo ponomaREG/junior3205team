@@ -6,7 +6,10 @@ import com.team3205.junior.domain.State
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-
+/**
+ *  Сценарий получения истории запросов
+ *  @param mainRepository - репозиторий
+ */
 class GetRecentSearchesUseCase @Inject constructor(
         private val mainRepository: MainRepository
 ) {

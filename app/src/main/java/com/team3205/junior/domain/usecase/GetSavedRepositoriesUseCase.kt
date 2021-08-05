@@ -6,6 +6,10 @@ import com.team3205.junior.domain.State
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+/**
+ *  Сценарий получения сохраненных репозиториев
+ *  @param mainRepository - репозиторий
+ */
 class GetSavedRepositoriesUseCase @Inject constructor(
     private val mainRepository: MainRepository
 ) {

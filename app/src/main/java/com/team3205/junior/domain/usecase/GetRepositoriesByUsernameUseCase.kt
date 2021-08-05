@@ -6,6 +6,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+/**
+ *  Сценарий получения репозиториев из сети и базы данных
+ *  @see GetRepositoriesFromDatabaseByUsernameUseCase
+ *  @see GetRepositoriesFromNetworkByUsernameUseCase
+ */
 class GetRepositoriesByUsernameUseCase @Inject constructor(
         private val getRepositoriesFromDatabaseByUsernameUseCase: GetRepositoriesFromDatabaseByUsernameUseCase,
         private val getRepositoriesFromNetworkByUsernameUseCase: GetRepositoriesFromNetworkByUsernameUseCase

@@ -5,6 +5,10 @@ import com.team3205.junior.data.repository.entities.Repository
 import com.team3205.junior.data.repository.entities.User
 import javax.inject.Inject
 
+/**
+ *  Сценарий сохранения репозитория
+ *  @param mainRepository - репозиторий
+ */
 class SaveRepoUseCase @Inject constructor(
         private val mainRepository: MainRepository
 ) {
